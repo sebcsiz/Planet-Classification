@@ -1,4 +1,4 @@
-# ASTR 122 (Astronomy II) Assignment
+# ASTR 122 (Astronomy II) Assignment 2
 
 Takes input from `.txt` file with data like:
 
