@@ -10,6 +10,7 @@ with open("planets.txt", "r") as file:
 
         name = data[0]
         temperature_str = data[2]
+        parallax_str = data[3]
         luminosity_str = data[4].strip(",")
 
         luminosity_str = luminosity_str.replace("x10", "e")
@@ -17,11 +18,14 @@ with open("planets.txt", "r") as file:
         try:
             temperature = float(temperature_str)
             luminosity = float(luminosity_str)
+            parallax = float(parallax_str)
         except ValueError:
             print(f"Error parsing values for {name}")
             continue
 
         solar_radius = math.sqrt(luminosity) * (5800 / temperature) ** 2
+        distance_parsec = 1 / parallax
+        distance_light_years = distance_parsec * 3.26
 
         if solar_radius <= 10:
             classification = "Dwarf"
@@ -30,4 +34,5 @@ with open("planets.txt", "r") as file:
         else:
             classification = "Supergiant"
 
-        print(f"{name} has a solar radius of {solar_radius:.2f}, and is classified as a {classification}.")
+        print(f"{name} has a solar radius of {solar_radius:.2f}, is classified as a {classification}, and has a "
+              f"distance of {distance_parsec:.2f} parsecs which is {distance_light_years:.2f} light years")
